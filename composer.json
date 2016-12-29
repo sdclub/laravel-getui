@@ -1,0 +1,29 @@
+{
+    "name": "sdclub/laravel-getui",
+    "description": "Getui expansion for Laravel",
+    "keywords": [
+        "Laravel5",
+        "Laravel",
+        "getui"
+    ],
+    "homepage": "https://github.com/sdclub/laravel-getui",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jamie",
+            "email": "wk1025@126.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "5.*",
+        "illuminate/config": "5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sdclub\\GetuiPush\\": "src/"
+        }
+    }
+}
