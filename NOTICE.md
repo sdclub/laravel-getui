@@ -1,16 +1,18 @@
-# AWS Service Provider for Laravel
+# laravel-getui
+个推 laravel5 扩展包, 根据官方最新SDK包整理
 
-<https://github.com/aws/aws-sdk-php-laravel>
+#安装方法
+    1、在项目目录下 composer require sdclub/laravel-getui
+       或在 composer.json 中添加 "sdclub/laravel-getui": "^1.0" 然后 composer update
+       如果无法安装 请执行一下 composer update nothing 然后 composer update
 
-Copyright 2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+    2、在config/app.php
+       'providers' 中添加 Sdclub\IGeTui\IGeTuiServiceProvider::class,
+       'aliases'   中添加 'IGeTui' => Sdclub\IGeTui\Facades\IGeTui::class,
 
-Licensed under the Apache License, Version 2.0 (the "License").
-You may not use this file except in compliance with the License.
-A copy of the License is located at
+    3、执行 php artisan config:cache 清空配置缓存
+       执行 php artisan vendor:publish --provider="Sdclub\IGeTui\IGeTuiServiceProvider" 将配置文件发布到config文件夹中
 
-<http://aws.amazon.com/apache2.0>
+    4、配置 config/igetui.php
 
-or in the "license" file accompanying this file. This file is distributed
-on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-express or implied. See the License for the specific language governing
-permissions and limitations under the License.
+#使用方法（待完善）

@@ -7,12 +7,12 @@
        如果无法安装 请执行一下 composer update nothing 然后 composer update
 
     2、在config/app.php
-       'providers' 中添加 Sdclub\GetuiPush\GetuiPushServiceProvider::class,
-       'aliases'   中添加 'GetuiPush' => Sdclub\GetuiPush\Facades\GetuiPush::class,
+       'providers' 中添加 Sdclub\IGeTui\IGeTuiServiceProvider::class,
+       'aliases'   中添加 'IGeTui' => Sdclub\IGeTui\Facades\IGeTui::class,
 
     3、执行 php artisan config:cache 清空配置缓存
-       执行 php artisan vendor:publish --provider="Sdclub\GetuiPush\GetuiPushServiceProvider" 将配置文件发布到config文件夹中
+       执行 php artisan vendor:publish --provider="Sdclub\IGeTui\IGeTuiServiceProvider" 将配置文件发布到config文件夹中
 
-    4、配置 config/getui.php
+    4、配置 config/igetui.php
 
 #使用方法（待完善）
