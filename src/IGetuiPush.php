@@ -37,9 +37,9 @@ class IGetuiPush {
      * 根据regId发送通知
      * @author Jamie<327240570@qq.com>
      * @since  2016-12-17T04:34:39+0800
-     * @param  string                   $cid   	[description]
+     * @param  string                   $cid    [description]
      * @param  array                    $data   [description]
-     * @param  integer                  $tid  	[description]
+     * @param  integer                  $tid    [description]
      * @return [type]                           [description]
      */
     public function send_id($cid = '', $data=[], $tid = 1) {
@@ -75,32 +75,32 @@ class IGetuiPush {
      * @return [type]                            [description]
      */
     public function send_ids($regIds = [], $data = [], $client = 'android', $retries = 1) {
-		
-	}
+        
+    }
 
-	/**
+    /**
      * 整合消息模板
      * @param $data
      * @param int $type 1=透传功能模板, 2=通知弹框下载模板, 3=通知链接模板, 4=通知透传模板
      */
-	private function getTemplate($data, $template_id = 1) {
-		if ($template_id==1) {
-			//安卓通知栏提示 ios 会在应用内提示 透传功能模板
+    private function getTemplate($data, $template_id = 1) {
+        if ($template_id==1) {
+            //安卓通知栏提示 ios 会在应用内提示 透传功能模板
             $template = $this->IGtNotificationTemplate($data);
-		} elseif ($template_id==2) {
-			//通知弹框下载模板
+        } elseif ($template_id==2) {
+            //通知弹框下载模板
             $template = $this->IGtNotyPopLoadTemplate($data);
-		} elseif ($template_id==3) {
-			//链接
+        } elseif ($template_id==3) {
+            //链接
             $template = $this->IGtLinkTemplate($data);
-		} elseif ($template_id==4) {
-			//通知透传模板
+        } elseif ($template_id==4) {
+            //通知透传模板
             $template = $this->IGtTransmissionTemplate($data);
-		}
-		return $template;
-	}
+        }
+        return $template;
+    }
 
-	//所有推送接口均支持四个消息模板，依次为通知弹框下载模板，通知链接模板，通知透传模板，透传模板
+    //所有推送接口均支持四个消息模板，依次为通知弹框下载模板，通知链接模板，通知透传模板，透传模板
     //注：IOS离线推送需通过APN进行转发，需填写pushInfo字段，目前仅不支持通知弹框下载功能
     //这是下载模板  ios不支持
     private function IGtNotyPopLoadTemplate($data) {
@@ -170,7 +170,7 @@ class IGetuiPush {
         $template->setAppId($this->app_id); //应用appid
         $template->setAppkey($this->app_key); //应用$this->APPKEY
         $template->setTransmissionType(1); //透传消息类型
-        $template->setTransmissionContent($data['content']); //透传内容
+        $template->setTransmissionContent(json_encode($data['content'])); //透传内容
         $template->setTitle($data['title']); //通知栏标题
         $template->setText($data['text']); //通知栏内容
         $template->setLogo(''); //通知栏logo
@@ -191,7 +191,7 @@ class IGetuiPush {
         $apn->titleLocArgs = array("titleLocArgs");
         $apn->titleLocKey = "通知栏标题";
         $apn->body = $data['body'];
-        $apn->customMsg = array("payload" => $data['payload']);
+        $apn->customMsg = array("payload" => json_encode($data['payload']));
         $apn->launchImage = "launchImage";
         $apn->locArgs = array("locArgs");
         //$apn->sound=("test1.wav");;
@@ -205,7 +205,7 @@ class IGetuiPush {
         $template->setAppId($this->app_id); //应用appid
         $template->setAppkey($this->app_key); //应用$this->APPKEY
         $template->setTransmissionType(1); //透传消息类型
-        $template->setTransmissionContent($data['content']); //透传内容
+        $template->setTransmissionContent(json_encode($data['content'])); //透传内容
         //$template->set_duration(BEGINTIME,ENDTIME); //设置ANDROID客户端在此时间区间内展示消息
         //APN简单推送
         //        $template = new IGtAPNTemplate();
@@ -235,7 +235,7 @@ class IGetuiPush {
         $apn->alertMsg = $alertmsg;
         //$apn->badge = 7;
         $apn->sound = "";
-        $apn->add_customMsg("payload", $data['payload']);
+        $apn->add_customMsg("payload", json_encode($data['payload']));
         $apn->contentAvailable = 1;
         $apn->category = "ACTIONABLE";
         $template->set_apnInfo($apn);
